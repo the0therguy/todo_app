@@ -5,9 +5,9 @@ const todoList = document.querySelector('.todo-list');
 
 //Event Listener
 todoButton.addEventListener('click', addTodo);
+todoList.addEventListener('click', deleteCheck);
 
 //Function
-
 function addTodo(event){
     //prevent form from submitting
     event.preventDefault();
@@ -38,4 +38,27 @@ function addTodo(event){
 
     //Clear Todo Input
     todoInput.value = "";
+}
+
+function deleteCheck(e){
+
+    const item = e.target;
+    //DELETE ToDO
+
+    if (item.classList[0]==='trash-btn') {
+        const todo = item.parentElement;
+        //animation
+        todo.classList.add('fall');
+        todo.addEventListener('transitioned', function(){
+            todo.remove();
+        })
+        
+    }
+
+    //Check mark
+    if (item.classList[0]==='complete-btn') {
+        const todo = item.parentElement;
+        todo.classList.toggle('completed');
+    }
+
 }
